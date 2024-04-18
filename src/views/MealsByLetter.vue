@@ -3,15 +3,18 @@ import { computed, watch } from 'vue'
 import store from '../store'
 import { useRoute } from 'vue-router'
 import Meals from '../components/Meals.vue'
+
 const route = useRoute()
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const meals = computed(() => store.state.mealsByLetter)
+
 watch(route, () => {
     store.dispatch('searchMealsByLetter', route.params.letter)
 })
+
 </script>
 <template>
-<div class="p-8 pb-0 text-orange-500">
+    <div class="p-8 pb-0 text-orange-500">
         <h1 class="text-4xl font-bold mb-4"> Search Meals By Letter</h1>
     </div>
 
@@ -22,6 +25,6 @@ watch(route, () => {
     </div>
 
 
-    <Meals :meals="meals"></Meals>
 
+    <Meals :meals="meals"></Meals>
 </template>
